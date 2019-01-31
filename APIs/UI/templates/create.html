@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<!--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create User</button>-->
+
+<!--<div id="id01" class="modal">-->
+
+<form action="{{url_for('createuser')}}" method="POST">
+    <div class="container">
+        <h1>Register</h1>
+        <p>Please fill in this form to create a User.</p>
+        <hr>
+
+        <label for="email" style="margin-left:127px; margin-right:30px;"><b>Username</b></label>
+        <input type="text" placeholder="Enter Email" name="username" required><br><br>
+
+        <label for="psw" style="margin-left:120px; margin-right:40px;"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required><br><br>
+
+        <!--<label for="psw-repeat" style="margin-left:70px; margin-right:40px;"><b>Repeat Password</b></label>-->
+        <!--<input type="password" placeholder="Repeat Password" name="psw-repeat" required><br><br>-->
+
+        <button type="submit" class="registerbtn" style="margin-left:320px;">Register</button>
+        <span class="psw" style="font-size:20px;  margin-right:340px"><a href="{{url_for('dashboard')}}">Return</a></span>
+        <hr>
+
+
+    </div>
+
+    <div class="container signin">
+        <p>Already have an account? <a href="#">Sign in</a>.</p>
+    </div>
+</form>
+<!--</div>-->
+
+<!--<script>-->
+<!--// Get the modal-->
+<!--var modal = document.getElementById('id01');-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+    <!--if (event.target == modal) {-->
+        <!--modal.style.display = "none";-->
+    <!--}-->
+<!--}-->
+<!--</script>-->
+
+{% endblock content %}

@@ -1,0 +1,156 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 style="padding-left: 90px;">DASHBOARD</h1>
+
+<td style="font-size:30px;"><h1 style="padding-left: 600px;"> Hi {{ user }}</h1></td>
+
+<div style="padding-right:20px;">
+
+    <!--<meta http-equiv="refresh" content="5" >-->
+
+    <ul class="nav navbar-nav navbar-right">
+        {% if session['logged_in'] == True %}
+          <!--<span class="psw" style="font-size:20px">(current)<a href="sign_out">Return</a></span>-->
+            <li style="font-size: 20px;"><a href="/sign_out">Logout<span class="sr-only">(current)</span></a></li>
+        {% else %}
+            <li><a href="/login">Login<span class="sr-only">(current)</span></a></li>
+        {% endif %}
+    </ul>
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create User</button>
+    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto; padding-right:50px">View User</button>
+
+    <!--<button style="margin-left: 20px;" type="button" ><a href="{{url_for('logout')}}"></a>Cancel</button>-->
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <div style="color:red;">{{ message }}</div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+
+
+</div><br>
+
+<div class="row">
+    <table class="table table-striped" style="width:2000px;" class="col-md-12">
+
+        <tr style="background-color:#00663d; color:#fff; padding-top: 12px;padding-bottom: 12px;padding-left: 20px;">
+            <th>#</th>
+
+            <th>User Name</th>
+
+            <th>Account Number</th>
+
+            <th>Amount</th>
+
+            <th>NO. Of Transactions</th>
+
+            <th>Gender</th>
+
+        </tr>
+
+
+{% for client in info['clients'] %}
+        <tr>
+            <td></td>
+            <td class="mr-2"> {{ client['clientname'] }}</td>
+            <td class="text-muted">{{ client['accountnumber'] }}</td>
+            <td class="text-muted">{{ client['amount'] }}</td>
+            <td class="text-muted">{{ client['numberoftran'] }}</td>
+            <td class="text-muted">{{ client['gender'] }}</td>
+        </tr>
+
+{% endfor %}
+</table>
+</div>
+
+<!--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>-->
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="{{url_for('authuser')}}" method="POST">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <!--<img src="./images/me.jpg" alt="Avatar" class="avatar">-->
+            <!--<img src="{{ user_image }}"></img>-->
+            <h1 style="padding-left: 30px;">Login</h1>
+        </div>
+
+
+        <label for="uname" style="margin-left:90px;"><b>Username:</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required><br><br>
+
+        <label for="psw" style="margin-left:90px;"><b>Password:</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required><br><br>
+
+        <button type="submit" style="margin-left:180px;">Login</button>
+        <!--<button type="submit">Login2</button>-->
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label><br>
+
+
+
+
+        <button style="margin-left: 20px;" type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span style=" margin-right: 150px;" class="psw">Forgot <a href="#">password?</a></span>
+
+
+    </form>
+</div>
+
+<div id="id02" class="modal">
+
+    <table class="table table-striped" style="width:700px; margin-left: 390px;background-color:white;" class="col-md-12">
+
+        <tr style="background-color:#00663d; color:#fff; padding-top: 12px;padding-bottom: 12px;padding-left: 20px;">
+            <th>#</th>
+
+            <th>User Name</th>
+
+            <th>Account Number</th>
+
+        </tr>
+
+
+        {% for user in info2['users'] %}
+        <tr>
+            <td></td>
+            <td class="mr-2"> {{ user['name'] }}</td>
+            <td class="text-muted">{{ user['Admin'] }}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+// Get the modal
+var modal = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+{% endblock content %}

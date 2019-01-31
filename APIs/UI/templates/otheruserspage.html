@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 style="padding-left: 90px;">DASHBOARD</h1>
+
+<td style="font-size:30px;"><h1 style="padding-left: 500px;"> Hi {{ user }}</h1></td>
+
+<div style="padding-left:20px;">
+    <!--<span class="psw">Return to<a href="{{url_for('logout')}}"> Login Page</a></span>-->
+    <!--<button style="margin-left: 20px;" type="button" ><a href="{{url_for('logout')}}"></a>Cancel</button>-->
+
+    <ul class="nav navbar-nav navbar-right">
+        {% if session['logged_in'] == True %}
+
+        <li style="font-size: 20px;"><a href="/sign_out">Logout<span class="sr-only">(current)</span></a></li>
+        {% else %}
+        <li><a href="/login">Login<span class="sr-only">(current)</span></a></li>
+        {% endif %}
+    </ul>
+
+
+</div><br><br><br><br>
+
+
+<!--<div class="col-md-12" style="background-color:#00663d; color:#fff; padding-top: 12px;padding-bottom: 12px;padding-left: 20px;">-->
+<!--<div class="col-md-12">-->
+<!--<th>List of Users</th>-->
+<!--</div>-->
+
+<!--</div>-->
+
+
+<table class="table table-striped" >
+
+    <tr style="background-color:#00663d; color:#fff; padding-top: 12px;padding-bottom: 12px;padding-left: 20px;">
+        <th>#</th>
+
+        <th>User Name</th>
+
+        <th>Account Number</th>
+
+        <th>Amount</th>
+
+        <th>NO. Of Transactions</th>
+
+        <th>Gender</th>
+        <!--<th>Public ID</th>-->
+
+    </tr>
+
+
+    {% for users in info['clients'] %}
+    <tr>
+        <td></td>
+        <td class="mr-2"> {{ users['clientname'] }}</td>
+        <td class="text-muted">{{ users['accountnumber'] }}</td>
+        <td class="text-muted">{{ users['amount'] }}</td>
+        <td class="text-muted">{{ users['numberoftran'] }}</td>
+        <td class="text-muted">{{ users['gender'] }}</td>
+        <!--<td class="text-muted">{{ users['id'] }}</td>-->
+    </tr>
+
+    {% endfor %}
+</table>
+{% endblock content %}

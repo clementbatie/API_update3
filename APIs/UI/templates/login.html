@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!--<div style="color:red;">{{message2}}</div>-->
+
+
+
+    <!--<form action="{{url_for('dashboard')}}" method="POST">-->
+
+            <!--<h1 style="padding-left: 300px;">Login</h1>-->
+
+        <!--<label for="uname" style="margin-left:200px;"><b>Username:</b></label>-->
+        <!--<input type="text" placeholder="Enter Username" name="username" required><br><br>-->
+
+        <!--<label for="psw" style="margin-left:200px;"><b>Password:</b></label>-->
+        <!--<input type="password" placeholder="Enter Password" name="password" required><br><br>-->
+
+        <!--<button type="submit" style="margin-left:180px;">Login</button>-->
+    <!--</form>-->
+<!--</div>-->
+
+
+<div class="container" >
+    <div class="row">
+        <div style="margin-left: 180px;" class="col-md-8 col-md-offset-1">
+            <div class="panel panel-primary">
+
+
+                <div id="app-layout2" style="height: 500px; width: 700px;" >
+
+                    <form action="{{url_for('dashboard')}}" method="POST">
+                       <br><br><br><br>
+
+                        <div style="background-color:#00663d; padding-top: 8px; padding-bottom: 10px; margin-right: 0px; margin-left: 40px;">
+                            <div style=" color: #fff;font-size: 20px;font-weight: bold; margin-left: 280px; ">Account Login</div>
+                        </div><br><br><br>
+
+
+                            <label class="col-md-4 control-label"></label>
+
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <li style="color:red;">{{ message }}</li>
+                            <div style="color:red;">{{message2}}</div>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                        {% block body %}{% endblock %}
+
+
+                        <div class="form-group">
+                            <div class="col-md-4" style="margin-left:250px;">
+                                <input type="text" class="form-control" style="width: 200px" placeholder="Enter Username" name="username" required>
+
+                            </div><br><br><br>
+
+
+                            <div class="col-md-7" style="margin-left:250px; padding-right:-0px">
+                                 <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-9 col-md-offset-4" >
+
+                                    <button type="submit" style="margin-left:60px; background-color:#00663d">Login</button>
+
+                                    <div style="font-size: 20px; color: #fff; padding-right: 40px; padding-left: 0px; text-align: center;"><i class="fa fa-btn fa-sign-in"></i>Sign In</div>
+
+                                </button><br><br>
+
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
